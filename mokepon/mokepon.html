@@ -4,14 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/mokepon.js"></script>
     <title>Mokepon</title>
 </head>
 <body>
     <h1>MOKEPON 🔥💦🌱</h1>
-    <p>
-        <button>Fuego 🔥</button>
-        <button>Agua 💦</button>
-        <button>Tierra 🌱</button>
-    </p>
+
+    <section id="select-pet">
+        <h2>Choose your pet:</h2>
+        <label for="hipodoge">Hipodoge</label>
+        <input type="radio" name="pet" id="hipodoge">
+
+        <label for="capipepo">Capipepo</label>
+        <input type="radio" name="pet" id="capipepo">
+
+        <label for="ratigueya">Ratigueya</label>
+        <input type="radio" name="pet" id="ratigueya">
+
+        <label for="langostelvis">Langostelvis</label>
+        <input type="radio" name="pet" id="langostelvis">
+
+        <label for="tucapalma">Tucapalma</label>
+        <input type="radio" name="pet" id="tucapalma">
+
+        <label for="pydos">Pydos</label>
+        <input type="radio" name="pet" id="pydos">
+
+        <button id="button-pet">Select</button>
+        
+        <!-- Hipodoge -> Water
+        Capipepo -> Ground
+        Ratigueya -> fire
+        Langostelvis -> Water and fire
+        Tucapalma -> Water and Ground
+        Pydos -> Ground and Fire -->
+    </section>
+
+    <section id="select-attack">
+        <h2>Choose your attack</h2>
+        <p>Your pet have <span>3</span> lives</p>
+        <p>Enemy's pet have <span>3</span> lives</p>
+        <p>
+            <button id="button-fire">Fire 🔥</button>
+            <button id="button-water">Water 💦</button>
+            <button id="button-ground">Ground 🌱</button>
+        </p>
+    </section>
+
+    <section id="message">
+        <p>Your pet attacked with fire, enemy's pet attacked with ground - YOU WIN ✨</p>
+    </section>
+
+    <section id="restart-game">
+        <button id="button-restart">Restart Game</button>
+    </section>
 </body>
 </html>
