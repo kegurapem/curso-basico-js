@@ -1,12 +1,22 @@
+let attackPlayer
+let attackEnemy
+let vidaPlayer = 3
+let vidaEnemigo = 3 
+
 function startPlay() {
     let buttonPetPlayer = document.getElementById('button-pet')
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
+
+    let buttonFire = document.getElementById('button-fire')
+    buttonFire.addEventListener('click', attackFire)
+
+    let buttonWater = document.getElementById('button-water')
+    buttonWater.addEventListener('click', attackWater)
+
+    let buttonGround = document.getElementById('button-ground')
+    buttonGround.addEventListener('click', attackGround)
 }
 
-function numberRandom(min=1, max=6) {
-    random = Math.floor(Math.random() * (max - min + 1) + min);
-    return random;
-}
 function selectPetPlayer() {
     // SELECT MY PET
     let hipodogeInpunt = document.getElementById('hipodoge')
@@ -40,7 +50,7 @@ function selectPetPlayer() {
 
 function selectPetEnemy() {
     let spanPetEnemy = document.getElementById('pet-enemy')
-    let nRandom = numberRandom()
+    let nRandom = numberRandom(1,6)
     if (nRandom == 1) {
         spanPetEnemy.innerHTML = 'Hipodoge'
     } else if (nRandom == 2) {
@@ -54,6 +64,104 @@ function selectPetEnemy() {
     } else if (nRandom == 6) {
         spanPetEnemy.innerHTML = 'Pydos'
     }
+}
+
+
+function attackFire() {
+    attackPlayer = 'Fire'
+    let spanMyTurnAttack = document.getElementById('my-attack')
+    spanMyTurnAttack.innerHTML = attackPlayer
+
+    ataqueEnemigo = enemyAttack()
+    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+
+    let spanWinner = document.getElementById('player-winner')
+    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
+
+    // let ganador = winner(attackPlayer, ataqueEnemigo)
+}
+
+function attackWater() {
+    attackPlayer = 'Water'
+    let spanMyTurnAttack = document.getElementById('my-attack')
+    spanMyTurnAttack.innerHTML = attackPlayer
+
+    ataqueEnemigo = enemyAttack()
+    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+
+    let spanWinner = document.getElementById('player-winner')
+    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
+    // let ganador = winner(attackPlayer, ataqueEnemigo)
+}
+
+function attackGround() {
+    attackPlayer = 'Ground'
+    let spanMyTurnAttack = document.getElementById('my-attack')
+    spanMyTurnAttack.innerHTML = attackPlayer
+
+    ataqueEnemigo = enemyAttack()
+    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+
+    let spanWinner = document.getElementById('player-winner')
+    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
+    // let ganador = winner(attackPlayer, ataqueEnemigo)
+}
+
+function enemyAttack() {
+    attackRandom = numberRandom(1,3)
+    if (attackRandom == 1) {
+        attackEnemy = 'Fire'
+    } else if (attackRandom == 2) {
+        attackEnemy = 'Water'
+    } else {
+        attackEnemy = 'Ground'
+    }
+    return attackEnemy
+}
+
+function winner() {
+    let spanVidasPlayer = document.getElementById('vida-player')
+    let spanVidasEnemigo = document.getElementById('vida-enemigo')
+
+    if (attackPlayer == attackEnemy) {
+        playerWinner = 'EMPANTE'
+    } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
+        playerWinner = 'YOU WIN'
+        vidaEnemigo = vidaEnemigo - 1
+        spanVidasEnemigo.innerHTML = vidaEnemigo 
+    } else if (attackPlayer =='Water' && attackEnemy =='Fire') {
+        playerWinner = 'YOU WIN'
+        vidaEnemigo = vidaEnemigo - 1
+        spanVidasEnemigo.innerHTML = vidaEnemigo 
+    } else if (attackPlayer =='Ground' && attackEnemy =='Water') {
+        playerWinner = 'YOU WIN'
+        vidaEnemigo = vidaEnemigo - 1
+        spanVidasEnemigo.innerHTML = vidaEnemigo 
+    } else {
+        playerWinner = 'ENEMY WIN'
+        vidaPlayer = vidaPlayer - 1
+        spanVidasPlayer.innerHTML = vidaPlayer  
+    }
+    
+
+    return playerWinner
+}
+
+function createMessagge(resultadoGanador) {
+    let sectionMessagge = document.getElementById('message')
+
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = `Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${ataqueEnemigo}, ${resultadoGanador}`
+
+    sectionMessagge.appendChild(parrafo)
+}
+
+function numberRandom(min, max) {
+    random = Math.floor(Math.random() * (max - min + 1) + min);
+    return random;
 }
 
 window.addEventListener('load', startPlay)
