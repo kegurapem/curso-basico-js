@@ -4,6 +4,12 @@ let vidaPlayer = 3
 let vidaEnemigo = 3 
 
 function startPlay() {
+    let selectAttack = document.getElementById('select-attack')
+    selectAttack.style.display = 'none'
+
+    let selectRestart = document.getElementById('restart-game')
+    selectRestart.style.display = 'none'
+
     let buttonPetPlayer = document.getElementById('button-pet')
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
 
@@ -15,6 +21,9 @@ function startPlay() {
 
     let buttonGround = document.getElementById('button-ground')
     buttonGround.addEventListener('click', attackGround)
+
+    let buttonRestart = document.getElementById('button-restart')
+    buttonRestart.addEventListener('click', restartGame)
 }
 
 function selectPetPlayer() {
@@ -46,6 +55,8 @@ function selectPetPlayer() {
     }
 
     selectPetEnemy()
+    let selectAttack = document.getElementById('select-attack')
+    selectAttack.style.display = 'block'
 }
 
 function selectPetEnemy() {
@@ -69,45 +80,50 @@ function selectPetEnemy() {
 
 function attackFire() {
     attackPlayer = 'Fire'
-    let spanMyTurnAttack = document.getElementById('my-attack')
-    spanMyTurnAttack.innerHTML = attackPlayer
+    // let spanMyTurnAttack = document.getElementById('my-attack')
+    // spanMyTurnAttack.innerHTML = attackPlayer
 
     ataqueEnemigo = enemyAttack()
-    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
-
-    let spanWinner = document.getElementById('player-winner')
-    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
-
+    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+    // ganadorPorAtaque = winner()
+    // let spanWinner = document.getElementById('player-winner')
+    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
     // let ganador = winner(attackPlayer, ataqueEnemigo)
+    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy} - ${ganadorPorAtaque}`)
+    winner()
 }
 
 function attackWater() {
     attackPlayer = 'Water'
-    let spanMyTurnAttack = document.getElementById('my-attack')
-    spanMyTurnAttack.innerHTML = attackPlayer
+    // let spanMyTurnAttack = document.getElementById('my-attack')
+    // spanMyTurnAttack.innerHTML = attackPlayer
 
     ataqueEnemigo = enemyAttack()
-    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
 
-    let spanWinner = document.getElementById('player-winner')
-    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
+    // let spanWinner = document.getElementById('player-winner')
+    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
     // let ganador = winner(attackPlayer, ataqueEnemigo)
+    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy}`)
+    winner()
 }
 
 function attackGround() {
     attackPlayer = 'Ground'
-    let spanMyTurnAttack = document.getElementById('my-attack')
-    spanMyTurnAttack.innerHTML = attackPlayer
+    // let spanMyTurnAttack = document.getElementById('my-attack')
+    // spanMyTurnAttack.innerHTML = attackPlayer
 
     ataqueEnemigo = enemyAttack()
-    let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
+    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
 
-    let spanWinner = document.getElementById('player-winner')
-    spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
+    // let spanWinner = document.getElementById('player-winner')
+    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
     // let ganador = winner(attackPlayer, ataqueEnemigo)
+    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy}`)
+    winner()
 }
 
 function enemyAttack() {
@@ -125,7 +141,6 @@ function enemyAttack() {
 function winner() {
     let spanVidasPlayer = document.getElementById('vida-player')
     let spanVidasEnemigo = document.getElementById('vida-enemigo')
-
     if (attackPlayer == attackEnemy) {
         playerWinner = 'EMPANTE'
     } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
@@ -145,18 +160,55 @@ function winner() {
         vidaPlayer = vidaPlayer - 1
         spanVidasPlayer.innerHTML = vidaPlayer  
     }
-    
+    createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy} - ${playerWinner}`)
+    reviewVidas()
 
-    return playerWinner
+    // return playerWinner
 }
 
-function createMessagge(resultadoGanador) {
-    let sectionMessagge = document.getElementById('message')
+function reviewVidas() {
+    if (vidaEnemigo == 0) {
+        createMessage('Ganaste firulays')
+        let buttonFire = document.getElementById('button-fire')
+        buttonFire.disabled = true
+        let buttonWater = document.getElementById('button-water')
+        buttonWater.disabled = true
+        let buttonGround = document.getElementById('button-ground')
+        buttonGround.disabled = true
 
+        let selectRestart = document.getElementById('restart-game')
+        selectRestart.style.display = 'block'
+    }
+    else if (vidaPlayer == 0) {
+        createMessage('Perdiste firulays')
+        let buttonFire = document.getElementById('button-fire')
+        buttonFire.disabled = true
+        let buttonWater = document.getElementById('button-water')
+        buttonWater.disabled = true
+        let buttonGround = document.getElementById('button-ground')
+        buttonGround.disabled = true
+
+        let selectRestart = document.getElementById('restart-game')
+        selectRestart.style.display = 'block'
+    }
+}
+
+function createMessage(mensaje) {
+    let sectionMessagge = document.getElementById('message')
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = `Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${ataqueEnemigo}, ${resultadoGanador}`
+
+    parrafo.innerHTML = mensaje
 
     sectionMessagge.appendChild(parrafo)
+
+    
+    // winner()
+
+   
+}
+
+function restartGame() {
+    location.reload()
 }
 
 function numberRandom(min, max) {
