@@ -4,11 +4,11 @@ let vidaPlayer = 3
 let vidaEnemigo = 3 
 
 function startPlay() {
-    let selectAttack = document.getElementById('select-attack')
-    selectAttack.style.display = 'none'
+    // let selectAttack = document.getElementById('select-attack')
+    // selectAttack.style.display = 'none'
 
-    let selectRestart = document.getElementById('restart-game')
-    selectRestart.style.display = 'none'
+    // let selectRestart = document.getElementById('restart-game')
+    // selectRestart.style.display = 'none'
 
     let buttonPetPlayer = document.getElementById('button-pet')
     buttonPetPlayer.addEventListener('click', selectPetPlayer)

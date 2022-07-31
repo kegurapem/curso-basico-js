@@ -9,56 +9,58 @@
     <title>Mokepon</title>
 </head>
 <body>
-    <h1 class="tittle">MOKEPON 🔥💦🌱</h1>
+    <main class="main-container">
+        <h1 class="tittle">MOKEPON 🔥💦🌱</h1>
 
-    <section id="select-pet">
-        <h2>Choose your pet:</h2>
-        <label for="hipodoge">Hipodoge</label>
-        <input type="radio" name="pet" id="hipodoge">
+        <section class="select-mokepon" id="select-pet">
+            <h2>Choose your pet:</h2>
+            <label class="tarjeta-mokepon" for="hipodoge">Hipodoge</label>
+            <input type="radio" name="pet" id="hipodoge">
 
-        <label for="capipepo">Capipepo</label>
-        <input type="radio" name="pet" id="capipepo">
+            <label class="tarjeta-mokepon" for="capipepo">Capipepo</label>
+            <input type="radio" name="pet" id="capipepo">
 
-        <label for="ratigueya">Ratigueya</label>
-        <input type="radio" name="pet" id="ratigueya">
+            <label class="tarjeta-mokepon" for="ratigueya">Ratigueya</label>
+            <input type="radio" name="pet" id="ratigueya">
 
-        <label for="langostelvis">Langostelvis</label>
-        <input type="radio" name="pet" id="langostelvis">
+            <label class="tarjeta-mokepon" for="langostelvis">Langostelvis</label>
+            <input type="radio" name="pet" id="langostelvis">
 
-        <label for="tucapalma">Tucapalma</label>
-        <input type="radio" name="pet" id="tucapalma">
+            <label class="tarjeta-mokepon" for="tucapalma">Tucapalma</label>
+            <input type="radio" name="pet" id="tucapalma">
 
-        <label for="pydos">Pydos</label>
-        <input type="radio" name="pet" id="pydos">
+            <label class="tarjeta-mokepon" for="pydos">Pydos</label>
+            <input type="radio" name="pet" id="pydos">
 
-        <button id="button-pet">Select</button>
-        
-        <!-- Hipodoge -> Water
-        Capipepo -> Ground
-        Ratigueya -> fire
-        Langostelvis -> Water and fire
-        Tucapalma -> Water and Ground
-        Pydos -> Ground and Fire -->
-    </section>
+            <button id="button-pet">Select</button>
+            
+            <!-- Hipodoge -> Water
+            Capipepo -> Ground
+            Ratigueya -> fire
+            Langostelvis -> Water and fire
+            Tucapalma -> Water and Ground
+            Pydos -> Ground and Fire -->
+        </section>
 
-    <section id="select-attack">
-        <h2>Choose your attack</h2>
-        <p>Your pet <span id="pet-player"></span> have <span id="vida-player">3</span> lives</p>
-        <p>Enemy's pet <span id="pet-enemy"></span> have <span id="vida-enemigo">3</span> lives</p>
-        <p>
-            <button id="button-fire">Fire 🔥</button>
-            <button id="button-water">Water 💦</button>
-            <button id="button-ground">Ground 🌱</button>
-        </p>
-    </section>
+        <section id="select-attack">
+            <h2>Choose your attack</h2>
+            <p>Your pet <span id="pet-player"></span> have <span id="vida-player">3</span> lives</p>
+            <p>Enemy's pet <span id="pet-enemy"></span> have <span id="vida-enemigo">3</span> lives</p>
+            <p>
+                <button id="button-fire">Fire 🔥</button>
+                <button id="button-water">Water 💦</button>
+                <button id="button-ground">Ground 🌱</button>
+            </p>
+        </section>
 
-    <section id="message">
-        <!-- <p>Your pet attacked with <span id="my-attack"></span>, enemy's pet attacked with <span id="enemy-attack"></span> <span id="player-winner"></span></p> -->
+        <section id="message">
+            <!-- <p>Your pet attacked with <span id="my-attack"></span>, enemy's pet attacked with <span id="enemy-attack"></span> <span id="player-winner"></span></p> -->
 
-    </section>
+        </section>
 
-    <section id="restart-game">
-        <button id="button-restart">Restart Game</button>
-    </section>
+        <section id="restart-game">
+            <button id="button-restart">Restart Game</button>
+        </section>
+    </main>
 </body>
 </html>

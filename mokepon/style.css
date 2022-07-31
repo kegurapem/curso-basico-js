@@ -1,5 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+body {
+    font-family: 'Fredoka One', cursive;
+    background-color: #0096FF;
+}
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .tittle {
-    color: lightseagreen;
+    color: whitesmoke;
+    font-size: 52px;
     width: 312px;
-    background-color: rgb(24, 23, 23);
+    /* text-align: center; */
+}
+.select-mokepon {
+    /* display: flex; */
+    /* text-align: center; */
+}
+.select-mokepon h2{
+    color: whitesmoke;
+    text-align: center;
+}
+
+.tarjeta-mokepon {
+    height: 100px;
+    width: 100px;
 }
