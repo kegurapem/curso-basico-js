@@ -4,11 +4,14 @@ let vidaPlayer = 3
 let vidaEnemigo = 3 
 
 function startPlay() {
-    // let selectAttack = document.getElementById('select-attack')
-    // selectAttack.style.display = 'none'
+    let selectAttack = document.getElementById('select-attack')
+    selectAttack.style.display = 'none'
 
-    // let selectRestart = document.getElementById('restart-game')
-    // selectRestart.style.display = 'none'
+    let selectRestart = document.getElementById('restart-game')
+    selectRestart.style.display = 'none'
+
+    let selectContinue= document.getElementById('select-continue')
+    selectContinue.style.display = 'none'
 
     let buttonPetPlayer = document.getElementById('button-pet')
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
@@ -24,8 +27,17 @@ function startPlay() {
 
     let buttonRestart = document.getElementById('button-restart')
     buttonRestart.addEventListener('click', restartGame)
-}
 
+    let buttonContinue = document.getElementById('button-continue-battle')
+    buttonContinue.addEventListener('click', continueGame)
+}
+function continueGame() {
+    let selectContinue= document.getElementById('select-continue')
+    selectContinue.style.display = 'none'
+
+    let selectAttack= document.getElementById('select-attack')
+    selectAttack.style.display = 'block'
+}
 function selectPetPlayer() {
     // SELECT MY PET
     let hipodogeInpunt = document.getElementById('hipodoge')
@@ -36,55 +48,98 @@ function selectPetPlayer() {
     let pydosInpunt = document.getElementById('pydos')
     
     let spanPetPlayer = document.getElementById('pet-player')
-    
+    let playerChose = document.getElementById('player-chose')
 
     if (hipodogeInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Hipodoge'
+        playerChose.innerHTML = 'Hipodoge'
+        rutaImg = './assets/1.png'
     } else if (capipepoInpun.checked === true) {
         spanPetPlayer.innerHTML = 'Capipepo'
+        playerChose.innerHTML = 'Capipepo'
+        rutaImg = './assets/2.png'
     } else if (ratigueyaInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Ratigueya'
+        playerChose.innerHTML = 'Ratigueya'
+        rutaImg = './assets/3.png'
     } else if (langostelvisInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Langostelvis'
+        playerChose.innerHTML = 'Langostelvis'
+        rutaImg = './assets/4.png'
     } else if (tucapalmaInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Tucapalma'
+        playerChose.innerHTML = 'Tucapalma'
+        rutaImg = './assets/5.png'
     } else if (pydosInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Pydos'
+        playerChose.innerHTML = 'Pydos'
+        rutaImg = './assets/6.png'
     } else {
         alert('Escoge p mascota')
     }
 
+    
     selectPetEnemy()
+    // let selectAttack = document.getElementById('select-attack')
+    // selectAttack.style.display = 'block'
 
-    let selectAttack = document.getElementById('select-attack')
-    selectAttack.style.display = 'block'
+    // let selectPet = document.getElementById('select-pet')
+    // selectPet.style.display = 'none'
 
-    let selectPet = document.getElementById('select-pet')
-    selectPet.style.display = 'none'
+    //INSERTAR IMAGEN PLAYER
+    let sectionImg = document.getElementById('player-choose')
+    let img = document.createElement('img')
+    img.setAttribute('src', rutaImg)
+    // img.src = rutaImg
+    sectionImg.appendChild(img)
+    
+    //INSERTAR IMAGEN ENEMIGO
 
-    let playerChose = document.getElementById('player-chose')
-    playerChose.innerHTML = 
-
-    let computerChose = document.getElementById('computer-chose')
+    //MUESTRA INTERFAZ-2
+    let selectContinue= document.getElementById('select-continue')
+    selectContinue.style.display = 'block'
+    //ESCONDE INTERFAZ-1
+    let selectMokepon= document.getElementById('select-pet')
+    selectMokepon.style.display = 'none'
 
 }
 
 function selectPetEnemy() {
     let spanPetEnemy = document.getElementById('pet-enemy')
+    let computerChose = document.getElementById('computer-chose')
     let nRandom = numberRandom(1,6)
+    
     if (nRandom == 1) {
         spanPetEnemy.innerHTML = 'Hipodoge'
+        computerChose.innerHTML = 'Hipodoge'
+        rutaImgEnemy = './assets/1.png'
     } else if (nRandom == 2) {
         spanPetEnemy.innerHTML = 'Capipepo'
+        computerChose.innerHTML = 'Capipepo'
+        rutaImgEnemy = './assets/2.png'
     } else if (nRandom == 3) {
         spanPetEnemy.innerHTML = 'Ratigueya'
+        computerChose.innerHTML = 'Ratigueya'
+        rutaImgEnemy = './assets/3.png'
     } else if (nRandom == 4) {
         spanPetEnemy.innerHTML = 'Langostelvis'
+        computerChose.innerHTML = 'Langostelvis'
+        rutaImgEnemy = './assets/4.png'
     } else if (nRandom == 5) {
         spanPetEnemy.innerHTML = 'Tucapalma'
+        computerChose.innerHTML = 'Tucapalma'
+        rutaImgEnemy = './assets/5.png'
     } else if (nRandom == 6) {
         spanPetEnemy.innerHTML = 'Pydos'
+        computerChose.innerHTML = 'Pydos'
+        rutaImgEnemy = './assets/6.png'
     }
+
+    let sectionImg = document.getElementById('computer-choose')
+    let img = document.createElement('img')
+    img.setAttribute('src', rutaImgEnemy)
+    // img.src = rutaImg
+    sectionImg.appendChild(img)
 }
 
 

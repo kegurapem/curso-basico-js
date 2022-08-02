@@ -9,7 +9,7 @@
 body {
     font-family: 'Fredoka One', cursive;
     /* font-family: 'Poppins', sans-serif; */
-    background-color: #355764;
+    background-color: #3c5f6d;
 }
 
 /* section select-pokemon */
@@ -20,8 +20,8 @@ body {
     align-items: center;
     text-align: center;
 
-    width: 50%;
-    height: 100vh;
+    width: 100%;
+    /* height: 100vh; */
     margin: 0 auto;
 }
 .tittle {
@@ -32,8 +32,9 @@ body {
     text-align: center;
     margin-bottom:48px;
 }
-/* .select-mokepon {
-}  */
+.select-mokepon {
+    width: 40%;
+} 
 .subtittle{
     color: rgb(253, 248, 248);
     /* text-align: center; */
@@ -57,10 +58,10 @@ body {
 }
 .tarjeta-mokepon {
     display: flex;
-    justify-content:space-around ;
+    justify-content:space-around;
     gap: 10px;
 
-    background-color: #5A8F7B;
+    background-color: #46859e;
     /* height: 80px; */
     width: 198px;
     border-radius: 16px;
@@ -80,19 +81,72 @@ body {
     padding: 8px 64px 8px 64px;
     border: #ffffff 1px solid;
     color: white;
-    background-color:#355764;
+    background-color:#46859e;
     font-weight: bold;
     margin-bottom: 40px;
 }
 
+/* section choose */
+/* .choose {
+    display: flex;
+    gap: 20px;
+} */
+.choose-div {
+    display: flex;
+    gap: 10px;
+    justify-content:space-around;
+}
+#player-choose p{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(253, 248, 248);
+    /* text-align: center; */
+    font-size: 20px;
+    margin-bottom: 24px;   
+    font-weight: bold;  
+    padding: 12px;
+}
+#computer-choose p{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(253, 248, 248);
+    /* text-align: center; */
+    font-size: 20px;
+    margin-bottom: 24px;
+    font-weight: bold; 
+    padding: 12px;      
+}
+.choose button {
+    border-radius: 16px;
+    font-size: 24px;
+    padding: 8px 64px 8px 64px;
+    border: #ffffff 1px solid;
+    color: white;
+    background-color:#46859e;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
 /* section attack */
 .attack {
 
 }
 
+.tittle2 {
+    /* font-family: 'Fredoka One', cursive; */
+    color: rgb(247, 241, 241);
+     font-size: 52px;
+    /*width: 312px; */
+    text-align: center;
+    margin-bottom:16px;
+}
 .attack-subtittle {
      color: rgb(253, 248, 248);
     /* text-align: center; */
     font-size: 32px;
     margin-bottom: 24px;
+}
+#player-choose img {
+    width: 80px;
+}
+
+#computer-choose img {
+    width: 80px;
 }
