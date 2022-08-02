@@ -10,47 +10,68 @@
 </head>
 <body>
     <main class="main-container">
-        <h1 class="tittle">MOKEPON 🔥💦🌱</h1>
-
         <section class="select-mokepon" id="select-pet">
-            <h2>Choose your pet:</h2>
-            <label class="tarjeta-mokepon" for="hipodoge">Hipodoge</label>
-            <input type="radio" name="pet" id="hipodoge">
+            <h1 class="tittle">MOKEPON 🔥💦🌱</h1>
 
-            <label class="tarjeta-mokepon" for="capipepo">Capipepo</label>
-            <input type="radio" name="pet" id="capipepo">
+            <h2 class="subtittle">Choose your pet :</h2>
 
-            <label class="tarjeta-mokepon" for="ratigueya">Ratigueya</label>
-            <input type="radio" name="pet" id="ratigueya">
-
-            <label class="tarjeta-mokepon" for="langostelvis">Langostelvis</label>
-            <input type="radio" name="pet" id="langostelvis">
-
-            <label class="tarjeta-mokepon" for="tucapalma">Tucapalma</label>
-            <input type="radio" name="pet" id="tucapalma">
-
-            <label class="tarjeta-mokepon" for="pydos">Pydos</label>
-            <input type="radio" name="pet" id="pydos">
+            <div class="tarjetas">
+                <label class="tarjeta-mokepon" for="hipodoge">
+                    <p>Hipodoge</p>
+                    <img src="./assets/1.png" alt=""> 
+                </label>
+                <input type="radio" name="pet" id="hipodoge">
+    
+                <label class="tarjeta-mokepon" for="capipepo">
+                    <p>Capipepo</p>
+                    <img src="./assets/2.png" alt="">
+                </label>
+                <input type="radio" name="pet" id="capipepo">
+    
+                <label class="tarjeta-mokepon" for="ratigueya">
+                    <p>Ratigueya</p>
+                    <img src="./assets/3.png" alt="">
+                </label>
+                <input type="radio" name="pet" id="ratigueya">
+    
+                <label class="tarjeta-mokepon" for="langostelvis">
+                    <p>Langostelvis</p>
+                    <img src="./assets/4.png" alt="">
+                </label>
+                <input type="radio" name="pet" id="langostelvis">
+    
+                <label class="tarjeta-mokepon" for="tucapalma">
+                    <p>Tucapalma</p>
+                    <img src="./assets/5.png" alt="">
+                </label>
+                <input type="radio" name="pet" id="tucapalma">
+    
+                <label class="tarjeta-mokepon" for="pydos">
+                    <p>Pydos</p>
+                    <img src="./assets/6.png" alt="">
+                </label>
+                <input type="radio" name="pet" id="pydos">
+            </div>
 
             <button id="button-pet">Select</button>
-            
-            <!-- Hipodoge -> Water
-            Capipepo -> Ground
-            Ratigueya -> fire
-            Langostelvis -> Water and fire
-            Tucapalma -> Water and Ground
-            Pydos -> Ground and Fire -->
         </section>
 
-        <section id="select-attack">
-            <h2>Choose your attack</h2>
+        <section class="attack" id="select-attack">
+            <h1 class="tittle">MOKEPON 🔥💦🌱</h1>
+            <div class="pokemons-chose">
+                <p>You chose <span id="player-chose"></span></p>
+                <p>Computer chose <span id="computer-chose"></span></p>
+            </div>
+            <div class="atacar">
+                <h2 class="attack-subtittle">Choose your attack</h2>
+                <p>
+                    <button id="button-fire">Fire 🔥</button>
+                    <button id="button-water">Water 💦</button>
+                    <button id="button-ground">Ground 🌱</button>
+                </p>
+            </div>
             <p>Your pet <span id="pet-player"></span> have <span id="vida-player">3</span> lives</p>
             <p>Enemy's pet <span id="pet-enemy"></span> have <span id="vida-enemigo">3</span> lives</p>
-            <p>
-                <button id="button-fire">Fire 🔥</button>
-                <button id="button-water">Water 💦</button>
-                <button id="button-ground">Ground 🌱</button>
-            </p>
         </section>
 
         <section id="message">

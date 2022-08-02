@@ -55,8 +55,18 @@ function selectPetPlayer() {
     }
 
     selectPetEnemy()
+
     let selectAttack = document.getElementById('select-attack')
     selectAttack.style.display = 'block'
+
+    let selectPet = document.getElementById('select-pet')
+    selectPet.style.display = 'none'
+
+    let playerChose = document.getElementById('player-chose')
+    playerChose.innerHTML = 
+
+    let computerChose = document.getElementById('computer-chose')
+
 }
 
 function selectPetEnemy() {

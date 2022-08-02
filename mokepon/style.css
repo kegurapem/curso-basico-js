@@ -1,32 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,300;1,200&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Fredoka One', cursive;
-    background-color: #0096FF;
+    /* font-family: 'Poppins', sans-serif; */
+    background-color: #355764;
 }
+
+/* section select-pokemon */
 .main-container {
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    width: 50%;
+    height: 100vh;
+    margin: 0 auto;
 }
 .tittle {
-    color: whitesmoke;
-    font-size: 52px;
-    width: 312px;
-    /* text-align: center; */
-}
-.select-mokepon {
-    /* display: flex; */
-    /* text-align: center; */
-}
-.select-mokepon h2{
-    color: whitesmoke;
+    /* font-family: 'Fredoka One', cursive; */
+    color: rgb(247, 241, 241);
+     font-size: 52px;
+    /*width: 312px; */
     text-align: center;
+    margin-bottom:48px;
+}
+/* .select-mokepon {
+}  */
+.subtittle{
+    color: rgb(253, 248, 248);
+    /* text-align: center; */
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+.tarjetas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: aliceblue;
+    font-size: 16px;
+    padding-bottom: 32px;
+}
+.tarjetas img{
+    width: 75px;
+}
+.tarjeta-mokepon {
+    display: flex;
+    justify-content:space-around ;
+    gap: 10px;
+
+    background-color: #5A8F7B;
+    /* height: 80px; */
+    width: 198px;
+    border-radius: 16px;
+    /* height: 0px; */
+    padding: 18px 40px 18px 40px;
+}
+.tarjeta-mokepon p {
+    align-self: center;
+    /* justify-self: center; */
+}
+.tarjetas input {
+    display: none;
+}
+.select-mokepon button {
+    border-radius: 16px;
+    font-size: 24px;
+    padding: 8px 64px 8px 64px;
+    border: #ffffff 1px solid;
+    color: white;
+    background-color:#355764;
+    font-weight: bold;
+    margin-bottom: 40px;
 }
 
-.tarjeta-mokepon {
-    height: 100px;
-    width: 100px;
+/* section attack */
+.attack {
+
+}
+
+.attack-subtittle {
+     color: rgb(253, 248, 248);
+    /* text-align: center; */
+    font-size: 32px;
+    margin-bottom: 24px;
 }
