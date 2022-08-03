@@ -220,7 +220,11 @@ function winner() {
         vidaPlayer = vidaPlayer - 1
         spanVidasPlayer.innerHTML = vidaPlayer  
     }
-    createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy} - ${playerWinner}`)
+    createMessage('player-message',`Your pet attacked with ${attackPlayer}`)
+    createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy}`)
+
+    // createMessage('message',`${playerWinner}`)
+
     reviewVidas()
 
     // return playerWinner
@@ -228,7 +232,7 @@ function winner() {
 
 function reviewVidas() {
     if (vidaEnemigo == 0) {
-        createMessage('Ganaste firulays')
+        createMessage('message',`Ganaste firulays`)
         let buttonFire = document.getElementById('button-fire')
         buttonFire.disabled = true
         let buttonWater = document.getElementById('button-water')
@@ -237,10 +241,12 @@ function reviewVidas() {
         buttonGround.disabled = true
 
         let selectRestart = document.getElementById('restart-game')
+        
         selectRestart.style.display = 'block'
+        
     }
     else if (vidaPlayer == 0) {
-        createMessage('Perdiste firulays')
+        createMessage('message',`Perdiste firulays`)
         let buttonFire = document.getElementById('button-fire')
         buttonFire.disabled = true
         let buttonWater = document.getElementById('button-water')
@@ -253,8 +259,9 @@ function reviewVidas() {
     }
 }
 
-function createMessage(mensaje) {
-    let sectionMessagge = document.getElementById('message')
+function createMessage(identifier, mensaje) {
+    // let sectionMessagge = document.getElementById('message')
+    let sectionMessagge = document.getElementById(identifier)
     let parrafo = document.createElement('p')
 
     parrafo.innerHTML = mensaje
