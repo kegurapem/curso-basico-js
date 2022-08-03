@@ -32,7 +32,7 @@ function startPlay() {
     buttonContinue.addEventListener('click', continueGame)
 }
 function continueGame() {
-    let selectContinue= document.getElementById('select-continue')
+    let selectContinue= document.getElementById('button-continue-battle')
     selectContinue.style.display = 'none'
 
     let selectAttack= document.getElementById('select-attack')
@@ -80,11 +80,6 @@ function selectPetPlayer() {
 
     
     selectPetEnemy()
-    // let selectAttack = document.getElementById('select-attack')
-    // selectAttack.style.display = 'block'
-
-    // let selectPet = document.getElementById('select-pet')
-    // selectPet.style.display = 'none'
 
     //INSERTAR IMAGEN PLAYER
     let sectionImg = document.getElementById('player-choose')
