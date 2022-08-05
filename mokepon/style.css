@@ -86,6 +86,10 @@ body {
     margin-bottom: 40px;
 }
 
+input:checked + label {
+    background-color: aqua;
+}
+
 /* section choose */
 /* .choose {
     display: flex;

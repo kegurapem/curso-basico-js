@@ -1,34 +1,44 @@
+let selectAttack = document.getElementById('select-attack')
+let selectRestart = document.getElementById('restart-game')
+let selectContinue= document.getElementById('select-continue')
+let buttonPetPlayer = document.getElementById('button-pet')
+let buttonFire = document.getElementById('button-fire')
+let buttonWater = document.getElementById('button-water')
+let buttonGround = document.getElementById('button-ground')
+let buttonRestart = document.getElementById('button-restart')
+let buttonContinue = document.getElementById('button-continue-battle')
+
 let attackPlayer
 let attackEnemy
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
 function startPlay() {
-    let selectAttack = document.getElementById('select-attack')
+    
     selectAttack.style.display = 'none'
 
-    let selectRestart = document.getElementById('restart-game')
+    
     selectRestart.style.display = 'none'
 
-    let selectContinue= document.getElementById('select-continue')
+    
     selectContinue.style.display = 'none'
 
-    let buttonPetPlayer = document.getElementById('button-pet')
+    
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
 
-    let buttonFire = document.getElementById('button-fire')
+    
     buttonFire.addEventListener('click', attackFire)
 
-    let buttonWater = document.getElementById('button-water')
+    
     buttonWater.addEventListener('click', attackWater)
 
-    let buttonGround = document.getElementById('button-ground')
+    
     buttonGround.addEventListener('click', attackGround)
 
-    let buttonRestart = document.getElementById('button-restart')
+    
     buttonRestart.addEventListener('click', restartGame)
 
-    let buttonContinue = document.getElementById('button-continue-battle')
+    
     buttonContinue.addEventListener('click', continueGame)
 }
 function continueGame() {
