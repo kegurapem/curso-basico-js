@@ -1,65 +1,116 @@
-let selectAttack = document.getElementById('select-attack')
-let selectRestart = document.getElementById('restart-game')
-let selectContinue= document.getElementById('select-continue')
-let buttonPetPlayer = document.getElementById('button-pet')
-let buttonFire = document.getElementById('button-fire')
-let buttonWater = document.getElementById('button-water')
-let buttonGround = document.getElementById('button-ground')
-let buttonRestart = document.getElementById('button-restart')
-let buttonContinue = document.getElementById('button-continue-battle')
+const selectContinue = document.getElementById('select-continue')
+const selectRestart = document.getElementById('restart-game')
+const selectAttack = document.getElementById('select-attack')
+const buttonPetPlayer = document.getElementById('button-pet')
+const buttonFire = document.getElementById('button-fire')
+const buttonWater = document.getElementById('button-water')
+const buttonGround = document.getElementById('button-ground')
+const buttonRestart = document.getElementById('button-restart')
+const buttonContinue = document.getElementById('button-continue-battle')
 
+const hipodogeInpunt = document.getElementById('hipodoge')
+const capipepoInpun = document.getElementById('capipepo')
+const ratigueyaInpunt = document.getElementById('ratigueya')
+const langostelvisInpunt = document.getElementById('langostelvis')
+const tucapalmaInpunt = document.getElementById('tucapalma')
+const pydosInpunt = document.getElementById('pydos')
+const spanPetPlayer = document.getElementById('pet-player')
+const playerChose = document.getElementById('player-chose')
+const sectionImg = document.getElementById('player-choose')
+const img = document.createElement('img')
+const selectMokepon= document.getElementById('select-pet')
+
+const spanPetEnemy = document.getElementById('pet-enemy')
+const computerChose = document.getElementById('computer-chose')
+
+const spanVidasPlayer = document.getElementById('vida-player')
+const spanVidasEnemigo = document.getElementById('vida-enemigo')
+
+let mokepones = []
 let attackPlayer
 let attackEnemy
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
+class Mokepon {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+        this.ataques = []
+    }
+}
+
+let  hipodoge = new Mokepon('Hipodoge', './assets/1.png', 3)
+let  capipepo = new Mokepon('Capipepo', './assets/2.png', 3)
+let  ratigueya = new Mokepon('Ratigueya', './assets/3.png', 3)
+let  langostelvis = new Mokepon('Langostelvis', './assets/4.png', 3)
+let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 3)
+let  pydos = new Mokepon('Pydos', './assets/6.png', 3)
+
+// mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
+hipodoge.ataques.push(
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🌱', id:'button-ground'}
+)
+capipepo.ataques.push(
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🌱', id:'button-ground'}
+)
+ratigueya.ataques.push(
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+)
+langostelvis.ataques.push(
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🌱', id:'button-ground'}
+)
+tucapalma.ataques.push(
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🌱', id:'button-ground'}
+)
+pydos.ataques.push(
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+)
+
+
 function startPlay() {
     
     selectAttack.style.display = 'none'
-
-    
     selectRestart.style.display = 'none'
-
-    
     selectContinue.style.display = 'none'
-
-    
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
-
-    
     buttonFire.addEventListener('click', attackFire)
-
-    
     buttonWater.addEventListener('click', attackWater)
-
-    
     buttonGround.addEventListener('click', attackGround)
-
-    
     buttonRestart.addEventListener('click', restartGame)
-
-    
     buttonContinue.addEventListener('click', continueGame)
 }
 function continueGame() {
-    let selectContinue= document.getElementById('button-continue-battle')
     selectContinue.style.display = 'none'
-
-    let selectAttack= document.getElementById('select-attack')
     selectAttack.style.display = 'block'
 }
 function selectPetPlayer() {
     // SELECT MY PET
-    let hipodogeInpunt = document.getElementById('hipodoge')
-    let capipepoInpun = document.getElementById('capipepo')
-    let ratigueyaInpunt = document.getElementById('ratigueya')
-    let langostelvisInpunt = document.getElementById('langostelvis')
-    let tucapalmaInpunt = document.getElementById('tucapalma')
-    let pydosInpunt = document.getElementById('pydos')
-    
-    let spanPetPlayer = document.getElementById('pet-player')
-    let playerChose = document.getElementById('player-chose')
-
     if (hipodogeInpunt.checked === true) {
         spanPetPlayer.innerHTML = 'Hipodoge'
         playerChose.innerHTML = 'Hipodoge'
@@ -87,33 +138,21 @@ function selectPetPlayer() {
     } else {
         alert('Escoge p mascota')
     }
-
-    
     selectPetEnemy()
 
     //INSERTAR IMAGEN PLAYER
-    let sectionImg = document.getElementById('player-choose')
-    let img = document.createElement('img')
     img.setAttribute('src', rutaImg)
     // img.src = rutaImg
     sectionImg.appendChild(img)
-    
     //INSERTAR IMAGEN ENEMIGO
-
     //MUESTRA INTERFAZ-2
-    let selectContinue= document.getElementById('select-continue')
     selectContinue.style.display = 'block'
     //ESCONDE INTERFAZ-1
-    let selectMokepon= document.getElementById('select-pet')
     selectMokepon.style.display = 'none'
-
 }
 
 function selectPetEnemy() {
-    let spanPetEnemy = document.getElementById('pet-enemy')
-    let computerChose = document.getElementById('computer-chose')
     let nRandom = numberRandom(1,6)
-    
     if (nRandom == 1) {
         spanPetEnemy.innerHTML = 'Hipodoge'
         computerChose.innerHTML = 'Hipodoge'
@@ -209,8 +248,6 @@ function enemyAttack() {
 }
 
 function winner() {
-    let spanVidasPlayer = document.getElementById('vida-player')
-    let spanVidasEnemigo = document.getElementById('vida-enemigo')
     if (attackPlayer == attackEnemy) {
         playerWinner = 'EMPANTE'
     } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
@@ -243,28 +280,16 @@ function winner() {
 function reviewVidas() {
     if (vidaEnemigo == 0) {
         createMessage('message',`Ganaste firulays`)
-        let buttonFire = document.getElementById('button-fire')
         buttonFire.disabled = true
-        let buttonWater = document.getElementById('button-water')
         buttonWater.disabled = true
-        let buttonGround = document.getElementById('button-ground')
         buttonGround.disabled = true
-
-        let selectRestart = document.getElementById('restart-game')
-        
         selectRestart.style.display = 'block'
-        
     }
     else if (vidaPlayer == 0) {
         createMessage('message',`Perdiste firulays`)
-        let buttonFire = document.getElementById('button-fire')
         buttonFire.disabled = true
-        let buttonWater = document.getElementById('button-water')
         buttonWater.disabled = true
-        let buttonGround = document.getElementById('button-ground')
         buttonGround.disabled = true
-
-        let selectRestart = document.getElementById('restart-game')
         selectRestart.style.display = 'block'
     }
 }
@@ -277,11 +302,6 @@ function createMessage(identifier, mensaje) {
     parrafo.innerHTML = mensaje
 
     sectionMessagge.appendChild(parrafo)
-
-    
-    // winner()
-
-   
 }
 
 function restartGame() {
