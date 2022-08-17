@@ -41,12 +41,13 @@ class Mokepon {
     }
 }
 
-let  hipodoge = new Mokepon('Hipodoge', './assets/1.png', 3)
-let  capipepo = new Mokepon('Capipepo', './assets/2.png', 3)
-let  ratigueya = new Mokepon('Ratigueya', './assets/3.png', 3)
-let  langostelvis = new Mokepon('Langostelvis', './assets/4.png', 3)
-let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 3)
-let  pydos = new Mokepon('Pydos', './assets/6.png', 3)
+let  hipodoge = new Mokepon('Hipodoge', './assets/1.png', 5)
+let  capipepo = new Mokepon('Capipepo', './assets/2.png', 5)
+let  ratigueya = new Mokepon('Ratigueya', './assets/3.png', 5)
+let  langostelvis = new Mokepon('Langostelvis', './assets/4.png', 5)
+let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 5)
+let  pydos = new Mokepon('Pydos', './assets/6.png', 5)
+
 
 // mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 hipodoge.ataques.push(
