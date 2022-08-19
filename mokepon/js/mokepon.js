@@ -110,7 +110,7 @@ function startPlay() {
 
     mokepones.forEach((mokepom) => {
         opcionDeMokepones = `
-        
+
         `
     })
 }
