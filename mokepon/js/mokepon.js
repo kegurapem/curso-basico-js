@@ -29,6 +29,7 @@ const spanVidasEnemigo = document.getElementById('vida-enemigo')
 let mokepones = []
 let attackPlayer
 let attackEnemy
+let opcionDeMokepones
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
@@ -93,6 +94,7 @@ pydos.ataques.push(
     {nombre: '🔥', id:'button-fire'},
 )
 
+mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 
 function startPlay() {
     
@@ -105,6 +107,12 @@ function startPlay() {
     buttonGround.addEventListener('click', attackGround)
     buttonRestart.addEventListener('click', restartGame)
     buttonContinue.addEventListener('click', continueGame)
+
+    mokepones.forEach((mokepom) => {
+        opcionDeMokepones = `
+        
+        `
+    })
 }
 function continueGame() {
     selectContinue.style.display = 'none'
