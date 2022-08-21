@@ -25,11 +25,13 @@ const computerChose = document.getElementById('computer-chose')
 
 const spanVidasPlayer = document.getElementById('vida-player')
 const spanVidasEnemigo = document.getElementById('vida-enemigo')
+const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 let mokepones = []
 let attackPlayer
 let attackEnemy
 let opcionDeMokepones
+
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
@@ -110,8 +112,13 @@ function startPlay() {
 
     mokepones.forEach((mokepom) => {
         opcionDeMokepones = `
-
+            <input type="radio" name="pet" id=${mokepom.nombre}>
+            <label class="tarjeta-mokepon" for=${mokepom.nombre}>
+                <p>${mokepom.nombre} </p>
+                <img src=${mokepom.foto} alt=${mokepom.nombre}> 
+            </label>
         `
+        contenedorTarjetas.innerHTML += opcionDeMokepones
     })
 }
 function continueGame() {
