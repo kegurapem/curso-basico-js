@@ -2,18 +2,18 @@ const selectContinue = document.getElementById('select-continue')
 const selectRestart = document.getElementById('restart-game')
 const selectAttack = document.getElementById('select-attack')
 const buttonPetPlayer = document.getElementById('button-pet')
-const buttonFire = document.getElementById('button-fire')
-const buttonWater = document.getElementById('button-water')
-const buttonGround = document.getElementById('button-ground')
+// const buttonFire = document.getElementById('button-fire')
+// const buttonWater = document.getElementById('button-water')
+// const buttonGround = document.getElementById('button-ground')
 const buttonRestart = document.getElementById('button-restart')
 const buttonContinue = document.getElementById('button-continue-battle')
 
-const hipodogeInpunt = document.getElementById('hipodoge')
-const capipepoInpun = document.getElementById('capipepo')
-const ratigueyaInpunt = document.getElementById('ratigueya')
-const langostelvisInpunt = document.getElementById('langostelvis')
-const tucapalmaInpunt = document.getElementById('tucapalma')
-const pydosInpunt = document.getElementById('pydos')
+// const hipodogeInpunt = document.getElementById('Hipodoge')
+// const capipepoInpun = document.getElementById('capipepo')
+// const ratigueyaInpunt = document.getElementById('ratigueya')
+// const langostelvisInpunt = document.getElementById('langostelvis')
+// const tucapalmaInpunt = document.getElementById('tucapalma')
+// const pydosInpunt = document.getElementById('pydos')
 const spanPetPlayer = document.getElementById('pet-player')
 const playerChose = document.getElementById('player-chose')
 const sectionImg = document.getElementById('player-choose')
@@ -27,10 +27,31 @@ const spanVidasPlayer = document.getElementById('vida-player')
 const spanVidasEnemigo = document.getElementById('vida-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
+const contenedorAtaques = document.getElementById('contenedorAtaques')
+
 let mokepones = []
 let attackPlayer
 let attackEnemy
 let opcionDeMokepones
+
+let mascotaJugador
+
+let ataquesMokepon
+
+let botones = []
+
+let ataqueJugador = []
+
+let hipodogeInpunt
+let capipepoInpun
+let ratigueyaInpunt
+let langostelvisInpunt
+let tucapalmaInpunt
+let pydosInpunt
+
+let buttonFire
+let buttonWater
+let buttonGround
 
 let vidaPlayer = 3
 let vidaEnemigo = 3 
@@ -52,7 +73,6 @@ let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 5)
 let  pydos = new Mokepon('Pydos', './assets/6.png', 5)
 
 
-// mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
 hipodoge.ataques.push(
     {nombre: '💦', id:'button-water'},
     {nombre: '💦', id:'button-water'},
@@ -104,23 +124,32 @@ function startPlay() {
     selectRestart.style.display = 'none'
     selectContinue.style.display = 'none'
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
-    buttonFire.addEventListener('click', attackFire)
-    buttonWater.addEventListener('click', attackWater)
-    buttonGround.addEventListener('click', attackGround)
+    // buttonFire.addEventListener('click', attackFire)
+    // buttonWater.addEventListener('click', attackWater)
+    // buttonGround.addEventListener('click', attackGround)
     buttonRestart.addEventListener('click', restartGame)
     buttonContinue.addEventListener('click', continueGame)
 
     mokepones.forEach((mokepom) => {
         opcionDeMokepones = `
-            <input type="radio" name="pet" id=${mokepom.nombre}>
+            <input type="radio" name="pet" id=${mokepom.nombre} >
             <label class="tarjeta-mokepon" for=${mokepom.nombre}>
                 <p>${mokepom.nombre} </p>
                 <img src=${mokepom.foto} alt=${mokepom.nombre}> 
             </label>
         `
         contenedorTarjetas.innerHTML += opcionDeMokepones
-    })
+
+        hipodogeInpunt = document.getElementById('Hipodoge')
+        capipepoInpun = document.getElementById('Capipepo')
+        ratigueyaInpunt = document.getElementById('Ratigueya')
+        langostelvisInpunt = document.getElementById('Langostelvis')
+        tucapalmaInpunt = document.getElementById('Tucapalma')
+        pydosInpunt = document.getElementById('Pydos')
+    }) 
 }
+
+
 function continueGame() {
     selectContinue.style.display = 'none'
     selectAttack.style.display = 'block'
@@ -128,32 +157,46 @@ function continueGame() {
 function selectPetPlayer() {
     // SELECT MY PET
     if (hipodogeInpunt.checked === true) {
-        spanPetPlayer.innerHTML = 'Hipodoge'
-        playerChose.innerHTML = 'Hipodoge'
-        rutaImg = './assets/1.png'
+        spanPetPlayer.innerHTML = hipodogeInpunt.id
+        playerChose.innerHTML = hipodogeInpunt.id
+        rutaImg = hipodoge.foto
+
+        mascotaJugador = hipodogeInpunt.id
     } else if (capipepoInpun.checked === true) {
-        spanPetPlayer.innerHTML = 'Capipepo'
-        playerChose.innerHTML = 'Capipepo'
-        rutaImg = './assets/2.png'
+        spanPetPlayer.innerHTML = capipepoInpun.id
+        playerChose.innerHTML = capipepoInpun.id
+        rutaImg = capipepo.foto
+
+        mascotaJugador = capipepoInpun.id
     } else if (ratigueyaInpunt.checked === true) {
-        spanPetPlayer.innerHTML = 'Ratigueya'
-        playerChose.innerHTML = 'Ratigueya'
-        rutaImg = './assets/3.png'
+        spanPetPlayer.innerHTML = ratigueyaInpunt.id
+        playerChose.innerHTML = ratigueyaInpunt.id
+        rutaImg = ratigueya.foto
+
+        mascotaJugador = ratigueyaInpunt.id
     } else if (langostelvisInpunt.checked === true) {
-        spanPetPlayer.innerHTML = 'Langostelvis'
-        playerChose.innerHTML = 'Langostelvis'
-        rutaImg = './assets/4.png'
+        spanPetPlayer.innerHTML = langostelvisInpunt.id
+        playerChose.innerHTML = langostelvisInpunt.id
+        rutaImg = langostelvis.foto
+
+        mascotaJugador = langostelvisInpunt.id
     } else if (tucapalmaInpunt.checked === true) {
-        spanPetPlayer.innerHTML = 'Tucapalma'
-        playerChose.innerHTML = 'Tucapalma'
-        rutaImg = './assets/5.png'
+        spanPetPlayer.innerHTML = tucapalmaInpunt.id
+        playerChose.innerHTML = tucapalmaInpunt.id
+        rutaImg = tucapalma.foto
+
+        mascotaJugador = tucapalmaInpunt.id
     } else if (pydosInpunt.checked === true) {
-        spanPetPlayer.innerHTML = 'Pydos'
-        playerChose.innerHTML = 'Pydos'
-        rutaImg = './assets/6.png'
+        spanPetPlayer.innerHTML = pydosInpunt.id
+        playerChose.innerHTML = pydosInpunt.id
+        rutaImg = pydos.foto
+
+        mascotaJugador = pydosInpunt.id
     } else {
         alert('Escoge p mascota')
     }
+
+    extraerAtaques(mascotaJugador)
     selectPetEnemy()
 
     //INSERTAR IMAGEN PLAYER
@@ -167,87 +210,94 @@ function selectPetPlayer() {
     selectMokepon.style.display = 'none'
 }
 
-function selectPetEnemy() {
-    let nRandom = numberRandom(1,6)
-    if (nRandom == 1) {
-        spanPetEnemy.innerHTML = 'Hipodoge'
-        computerChose.innerHTML = 'Hipodoge'
-        rutaImgEnemy = './assets/1.png'
-    } else if (nRandom == 2) {
-        spanPetEnemy.innerHTML = 'Capipepo'
-        computerChose.innerHTML = 'Capipepo'
-        rutaImgEnemy = './assets/2.png'
-    } else if (nRandom == 3) {
-        spanPetEnemy.innerHTML = 'Ratigueya'
-        computerChose.innerHTML = 'Ratigueya'
-        rutaImgEnemy = './assets/3.png'
-    } else if (nRandom == 4) {
-        spanPetEnemy.innerHTML = 'Langostelvis'
-        computerChose.innerHTML = 'Langostelvis'
-        rutaImgEnemy = './assets/4.png'
-    } else if (nRandom == 5) {
-        spanPetEnemy.innerHTML = 'Tucapalma'
-        computerChose.innerHTML = 'Tucapalma'
-        rutaImgEnemy = './assets/5.png'
-    } else if (nRandom == 6) {
-        spanPetEnemy.innerHTML = 'Pydos'
-        computerChose.innerHTML = 'Pydos'
-        rutaImgEnemy = './assets/6.png'
+function extraerAtaques(mascotaJugador) {
+    let ataquesNuevo
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mascotaJugador == mokepones[i].nombre) {
+            ataquesNuevo = mokepones[i].ataques
+        }
+        
     }
+    mostrarAtaques(ataquesNuevo)
+}
+
+function mostrarAtaques(ataquesNuevo) {
+    ataquesNuevo.forEach((ataque) => {
+        ataquesMokepon = `
+        <button id=${ataque.id} class="botonAtaque">${ataque.nombre}</button>
+        `
+        contenedorAtaques.innerHTML += ataquesMokepon
+    })
+
+    buttonFire = document.getElementById('button-fire')
+    buttonWater = document.getElementById('button-water')
+    buttonGround = document.getElementById('button-ground')
+
+    botones = document.querySelectorAll('.botonAtaque')
+
+    // buttonFire.addEventListener('click', attackFire)
+    // buttonWater.addEventListener('click', attackWater)
+    // buttonGround.addEventListener('click', attackGround)
+}
+
+function secuenciaAtaque() {
+    botones.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            if (e.target.textContent === '🔥') {
+                ataqueJugador.push('Fire')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            } else if (e.target.textContent === '💦') {
+                ataqueJugador.push('Water')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            } else {
+                ataqueJugador.push('Ground')
+                console.log(ataqueJugador)
+                boton.style.background = '#112f58'
+            }
+        })
+    })
+}
+
+function selectPetEnemy() {
+    let nRandom = numberRandom(0, mokepones.length - 1)
+    // console.log(nRandom)
+    spanPetEnemy.innerHTML = mokepones[nRandom].nombre
+    computerChose.innerHTML = mokepones[nRandom].nombre
+    rutaImgEnemy = mokepones[nRandom].foto
 
     let sectionImg = document.getElementById('computer-choose')
     let img = document.createElement('img')
     img.setAttribute('src', rutaImgEnemy)
     // img.src = rutaImg
     sectionImg.appendChild(img)
+
+    secuenciaAtaque()
 }
 
 
 function attackFire() {
-    attackPlayer = 'Fire'
-    // let spanMyTurnAttack = document.getElementById('my-attack')
-    // spanMyTurnAttack.innerHTML = attackPlayer
+    // attackPlayer = 'Fire'
 
-    ataqueEnemigo = enemyAttack()
-    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
-    // ganadorPorAtaque = winner()
-    // let spanWinner = document.getElementById('player-winner')
-    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
-    // let ganador = winner(attackPlayer, ataqueEnemigo)
-    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy} - ${ganadorPorAtaque}`)
+    // ataqueEnemigo = enemyAttack()
+
     winner()
 }
 
 function attackWater() {
-    attackPlayer = 'Water'
-    // let spanMyTurnAttack = document.getElementById('my-attack')
-    // spanMyTurnAttack.innerHTML = attackPlayer
+    // attackPlayer = 'Water'
 
-    ataqueEnemigo = enemyAttack()
-    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+    // ataqueEnemigo = enemyAttack()
 
-    // let spanWinner = document.getElementById('player-winner')
-    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
-    // let ganador = winner(attackPlayer, ataqueEnemigo)
-    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy}`)
     winner()
 }
 
 function attackGround() {
-    attackPlayer = 'Ground'
-    // let spanMyTurnAttack = document.getElementById('my-attack')
-    // spanMyTurnAttack.innerHTML = attackPlayer
+    // attackPlayer = 'Ground'
 
-    ataqueEnemigo = enemyAttack()
-    // let spanEnemyTurnAttack = document.getElementById('enemy-attack')
-    // spanEnemyTurnAttack.innerHTML = ataqueEnemigo
+    // ataqueEnemigo = enemyAttack()
 
-    // let spanWinner = document.getElementById('player-winner')
-    // spanWinner.innerHTML = winner(attackPlayer, ataqueEnemigo)
-    // let ganador = winner(attackPlayer, ataqueEnemigo)
-    // createMessage(`Your pet attacked with ${attackPlayer}, enemy's pet attacked with ${attackEnemy}`)
     winner()
 }
 
