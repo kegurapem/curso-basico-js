@@ -2,18 +2,10 @@ const selectContinue = document.getElementById('select-continue')
 const selectRestart = document.getElementById('restart-game')
 const selectAttack = document.getElementById('select-attack')
 const buttonPetPlayer = document.getElementById('button-pet')
-// const buttonFire = document.getElementById('button-fire')
-// const buttonWater = document.getElementById('button-water')
-// const buttonGround = document.getElementById('button-ground')
+
 const buttonRestart = document.getElementById('button-restart')
 const buttonContinue = document.getElementById('button-continue-battle')
 
-// const hipodogeInpunt = document.getElementById('Hipodoge')
-// const capipepoInpun = document.getElementById('capipepo')
-// const ratigueyaInpunt = document.getElementById('ratigueya')
-// const langostelvisInpunt = document.getElementById('langostelvis')
-// const tucapalmaInpunt = document.getElementById('tucapalma')
-// const pydosInpunt = document.getElementById('pydos')
 const spanPetPlayer = document.getElementById('pet-player')
 const playerChose = document.getElementById('player-chose')
 const sectionImg = document.getElementById('player-choose')
@@ -243,9 +235,6 @@ function mostrarAtaques(ataquesNuevo) {
 
     botones = document.querySelectorAll('.botonAtaque')
 
-    // buttonFire.addEventListener('click', attackFire)
-    // buttonWater.addEventListener('click', attackWater)
-    // buttonGround.addEventListener('click', attackGround)
 }
 
 function secuenciaAtaque() {
@@ -255,14 +244,20 @@ function secuenciaAtaque() {
                 ataqueJugador.push('Fire')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
+                createMessage('player-message','🔥')
             } else if (e.target.textContent === '💦') {
                 ataqueJugador.push('Water')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
+                createMessage('player-message','💦')
             } else {
                 ataqueJugador.push('Ground')
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
+                boton.disabled = true
+                createMessage('player-message','🌱')
             }
             enemyAttack()
         })
@@ -281,53 +276,24 @@ function selectPetEnemy() {
     let sectionImg = document.getElementById('computer-choose')
     let img = document.createElement('img')
     img.setAttribute('src', rutaImgEnemy)
-    // img.src = rutaImg
     sectionImg.appendChild(img)
 
     secuenciaAtaque()
 }
 
-
-// function attackFire() {
-//     // attackPlayer = 'Fire'
-
-//     // ataqueEnemigo = enemyAttack()
-
-//     winner()
-// }
-
-// function attackWater() {
-//     // attackPlayer = 'Water'
-
-//     // ataqueEnemigo = enemyAttack()
-
-//     winner()
-// }
-
-// function attackGround() {
-//     // attackPlayer = 'Ground'
-
-//     // ataqueEnemigo = enemyAttack()
-
-//     winner()
-// }
-
 function enemyAttack() {
     attackRandom = numberRandom(0, ataquesMokeponEnemigo.length - 1)
     if (attackRandom == 0 || attackRandom == 1) {
         attackEnemy.push('Fire')
+        createMessage('computer-message','🔥')
     } else if (attackRandom == 3 || attackRandom == 4) {
         attackEnemy.push('Water')
+        createMessage('computer-message','💦')
     } else {
         attackEnemy.push('Ground')
+        createMessage('computer-message','🌱')
     }
-    console.log(attackEnemy)
-    // winner()
     iniciarPelea()
-    return attackEnemy
-    
-
-    
 }
 
 function iniciarPelea() {
@@ -343,72 +309,30 @@ function indexAmbosOpentes(jugador, enemigo) {
 
 function winner() {
     for (let i = 0; i < ataqueJugador.length; i++) {
-        // console.log(ataqueJugador[i])
         indexAmbosOpentes(i, i)
         if(ataqueJugador[i] === attackEnemy[i]) {
-            console.log('Empate')
             // createMessage('message', 'Empate')
         } else if (ataqueJugador[i] == 'Fire' && attackEnemy[i] == 'Ground') {
             playerWinner = 'YOU WIN'
             victoriasJugador++
-            spanVidasEnemigo.innerHTML = victoriasJugador
-            // vidaEnemigo = vidaEnemigo - 1
-            // spanVidasEnemigo.innerHTML = vidaEnemigo
+            spanVidasPlayer.innerHTML = victoriasJugador
         } else if (ataqueJugador[i] == 'Water' && attackEnemy[i] == 'Fire') {
             playerWinner = 'YOU WIN'
             victoriasJugador++
-            spanVidasEnemigo.innerHTML = victoriasJugador
-            // vidaEnemigo = vidaEnemigo - 1
-            // spanVidasEnemigo.innerHTML = vidaEnemigo
+            spanVidasPlayer.innerHTML = victoriasJugador
         } else if (ataqueJugador[i] == 'Ground' && attackEnemy[i] == 'Water') {
             playerWinner = 'YOU WIN'
             victoriasJugador++
-            spanVidasEnemigo.innerHTML = victoriasJugador
-            // vidaEnemigo = vidaEnemigo - 1
-            // spanVidasEnemigo.innerHTML = vidaEnemigo
+            spanVidasPlayer.innerHTML = victoriasJugador
         } else {
             playerWinner = 'ENEMY WIN'
             victoriasEnemigo++
             spanVidasEnemigo.innerHTML = victoriasEnemigo
-            // vidaPlayer = vidaPlayer - 1
-            // spanVidasPlayer.innerHTML = vidaPlayer  
         }
-
-        createMessage('player-message',`Your pet attacked with ${ataqueJugador[i]}`)
-        createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy[i]}`)
-
-        // reviewVidas()
-        revisarVictorias()
-        
     }
+    revisarVictorias()
+    selectRestart.style.display = 'block'
 
-    //  if (attackPlayer == attackEnemy) {
-    //     playerWinner = 'EMPANTE'
-    // } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
-    //     playerWinner = 'YOU WIN'
-    //     vidaEnemigo = vidaEnemigo - 1
-    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
-    // } else if (attackPlayer =='Water' && attackEnemy =='Fire') {
-    //     playerWinner = 'YOU WIN'
-    //     vidaEnemigo = vidaEnemigo - 1
-    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
-    // } else if (attackPlayer =='Ground' && attackEnemy =='Water') {
-    //     playerWinner = 'YOU WIN'
-    //     vidaEnemigo = vidaEnemigo - 1
-    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
-    // } else {
-    //     playerWinner = 'ENEMY WIN'
-    //     vidaPlayer = vidaPlayer - 1
-    //     spanVidasPlayer.innerHTML = vidaPlayer  
-    // }
-    // createMessage('player-message',`Your pet attacked with ${attackPlayer}`)
-    // createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy}`)
-
-    // createMessage('message',`${playerWinner}`)
-
-    // reviewVidas()
-
-    // return playerWinner
 }
 
 function revisarVictorias() {
@@ -418,23 +342,6 @@ function revisarVictorias() {
         createMessage('message',`Ganaste firulays`)
     } else {
         createMessage('message',`Perdiste firulays`)
-    }
-}
-
-function reviewVidas() {
-    if (vidaEnemigo == 0) {
-        createMessage('message',`Ganaste firulays`)
-        buttonFire.disabled = true
-        buttonWater.disabled = true
-        buttonGround.disabled = true
-        selectRestart.style.display = 'block'
-    }
-    else if (vidaPlayer == 0) {
-        createMessage('message',`Perdiste firulays`)
-        buttonFire.disabled = true
-        buttonWater.disabled = true
-        buttonGround.disabled = true
-        selectRestart.style.display = 'block'
     }
 }
 
