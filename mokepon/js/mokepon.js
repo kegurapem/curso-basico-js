@@ -55,6 +55,12 @@ let buttonGround
 
 let ataquesMokeponEnemigo
 
+let indexAtaqueJugador
+let indexAtaqueEnemigo 
+
+let victoriasJugador = 0
+let victoriasEnemigo = 0
+
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
@@ -330,42 +336,89 @@ function iniciarPelea() {
     }
 }
 
+function indexAmbosOpentes(jugador, enemigo) {
+    indexAtaqueJugador = ataqueJugador[jugador]
+    indexAtaqueEnemigo = attackEnemy[enemigo]
+}
+
 function winner() {
     for (let i = 0; i < ataqueJugador.length; i++) {
         // console.log(ataqueJugador[i])
+        indexAmbosOpentes(i, i)
         if(ataqueJugador[i] === attackEnemy[i]) {
             console.log('Empate')
+            // createMessage('message', 'Empate')
+        } else if (ataqueJugador[i] == 'Fire' && attackEnemy[i] == 'Ground') {
+            playerWinner = 'YOU WIN'
+            victoriasJugador++
+            spanVidasEnemigo.innerHTML = victoriasJugador
+            // vidaEnemigo = vidaEnemigo - 1
+            // spanVidasEnemigo.innerHTML = vidaEnemigo
+        } else if (ataqueJugador[i] == 'Water' && attackEnemy[i] == 'Fire') {
+            playerWinner = 'YOU WIN'
+            victoriasJugador++
+            spanVidasEnemigo.innerHTML = victoriasJugador
+            // vidaEnemigo = vidaEnemigo - 1
+            // spanVidasEnemigo.innerHTML = vidaEnemigo
+        } else if (ataqueJugador[i] == 'Ground' && attackEnemy[i] == 'Water') {
+            playerWinner = 'YOU WIN'
+            victoriasJugador++
+            spanVidasEnemigo.innerHTML = victoriasJugador
+            // vidaEnemigo = vidaEnemigo - 1
+            // spanVidasEnemigo.innerHTML = vidaEnemigo
+        } else {
+            playerWinner = 'ENEMY WIN'
+            victoriasEnemigo++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo
+            // vidaPlayer = vidaPlayer - 1
+            // spanVidasPlayer.innerHTML = vidaPlayer  
         }
+
+        createMessage('player-message',`Your pet attacked with ${ataqueJugador[i]}`)
+        createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy[i]}`)
+
+        // reviewVidas()
+        revisarVictorias()
         
     }
 
-    if (attackPlayer == attackEnemy) {
-        playerWinner = 'EMPANTE'
-    } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
-        playerWinner = 'YOU WIN'
-        vidaEnemigo = vidaEnemigo - 1
-        spanVidasEnemigo.innerHTML = vidaEnemigo 
-    } else if (attackPlayer =='Water' && attackEnemy =='Fire') {
-        playerWinner = 'YOU WIN'
-        vidaEnemigo = vidaEnemigo - 1
-        spanVidasEnemigo.innerHTML = vidaEnemigo 
-    } else if (attackPlayer =='Ground' && attackEnemy =='Water') {
-        playerWinner = 'YOU WIN'
-        vidaEnemigo = vidaEnemigo - 1
-        spanVidasEnemigo.innerHTML = vidaEnemigo 
-    } else {
-        playerWinner = 'ENEMY WIN'
-        vidaPlayer = vidaPlayer - 1
-        spanVidasPlayer.innerHTML = vidaPlayer  
-    }
-    createMessage('player-message',`Your pet attacked with ${attackPlayer}`)
-    createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy}`)
+    //  if (attackPlayer == attackEnemy) {
+    //     playerWinner = 'EMPANTE'
+    // } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
+    //     playerWinner = 'YOU WIN'
+    //     vidaEnemigo = vidaEnemigo - 1
+    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
+    // } else if (attackPlayer =='Water' && attackEnemy =='Fire') {
+    //     playerWinner = 'YOU WIN'
+    //     vidaEnemigo = vidaEnemigo - 1
+    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
+    // } else if (attackPlayer =='Ground' && attackEnemy =='Water') {
+    //     playerWinner = 'YOU WIN'
+    //     vidaEnemigo = vidaEnemigo - 1
+    //     spanVidasEnemigo.innerHTML = vidaEnemigo 
+    // } else {
+    //     playerWinner = 'ENEMY WIN'
+    //     vidaPlayer = vidaPlayer - 1
+    //     spanVidasPlayer.innerHTML = vidaPlayer  
+    // }
+    // createMessage('player-message',`Your pet attacked with ${attackPlayer}`)
+    // createMessage('computer-message',`Enemy's pet attacked with ${attackEnemy}`)
 
     // createMessage('message',`${playerWinner}`)
 
-    reviewVidas()
+    // reviewVidas()
 
     // return playerWinner
+}
+
+function revisarVictorias() {
+    if (victoriasJugador === victoriasEnemigo) {
+        createMessage('message',`Empataste Cuy. Sigue intentando color chaufa`)
+    } else if (victoriasJugador > victoriasEnemigo) {
+        createMessage('message',`Ganaste firulays`)
+    } else {
+        createMessage('message',`Perdiste firulays`)
+    }
 }
 
 function reviewVidas() {
