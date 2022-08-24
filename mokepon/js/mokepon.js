@@ -30,8 +30,8 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 let mokepones = []
-let attackPlayer
-let attackEnemy
+let attackPlayer = []
+let attackEnemy = []
 let opcionDeMokepones
 
 let mascotaJugador
@@ -52,6 +52,8 @@ let pydosInpunt
 let buttonFire
 let buttonWater
 let buttonGround
+
+let ataquesMokeponEnemigo
 
 let vidaPlayer = 3
 let vidaEnemigo = 3 
@@ -256,8 +258,10 @@ function secuenciaAtaque() {
                 console.log(ataqueJugador)
                 boton.style.background = '#112f58'
             }
+            enemyAttack()
         })
     })
+    
 }
 
 function selectPetEnemy() {
@@ -265,6 +269,7 @@ function selectPetEnemy() {
     // console.log(nRandom)
     spanPetEnemy.innerHTML = mokepones[nRandom].nombre
     computerChose.innerHTML = mokepones[nRandom].nombre
+    ataquesMokeponEnemigo = mokepones[nRandom].ataques
     rutaImgEnemy = mokepones[nRandom].foto
 
     let sectionImg = document.getElementById('computer-choose')
@@ -277,43 +282,63 @@ function selectPetEnemy() {
 }
 
 
-function attackFire() {
-    // attackPlayer = 'Fire'
+// function attackFire() {
+//     // attackPlayer = 'Fire'
 
-    // ataqueEnemigo = enemyAttack()
+//     // ataqueEnemigo = enemyAttack()
 
-    winner()
-}
+//     winner()
+// }
 
-function attackWater() {
-    // attackPlayer = 'Water'
+// function attackWater() {
+//     // attackPlayer = 'Water'
 
-    // ataqueEnemigo = enemyAttack()
+//     // ataqueEnemigo = enemyAttack()
 
-    winner()
-}
+//     winner()
+// }
 
-function attackGround() {
-    // attackPlayer = 'Ground'
+// function attackGround() {
+//     // attackPlayer = 'Ground'
 
-    // ataqueEnemigo = enemyAttack()
+//     // ataqueEnemigo = enemyAttack()
 
-    winner()
-}
+//     winner()
+// }
 
 function enemyAttack() {
-    attackRandom = numberRandom(1,3)
-    if (attackRandom == 1) {
-        attackEnemy = 'Fire'
-    } else if (attackRandom == 2) {
-        attackEnemy = 'Water'
+    attackRandom = numberRandom(0, ataquesMokeponEnemigo.length - 1)
+    if (attackRandom == 0 || attackRandom == 1) {
+        attackEnemy.push('Fire')
+    } else if (attackRandom == 3 || attackRandom == 4) {
+        attackEnemy.push('Water')
     } else {
-        attackEnemy = 'Ground'
+        attackEnemy.push('Ground')
     }
+    console.log(attackEnemy)
+    // winner()
+    iniciarPelea()
     return attackEnemy
+    
+
+    
+}
+
+function iniciarPelea() {
+    if (ataqueJugador.length === 5) {
+        winner()
+    }
 }
 
 function winner() {
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        // console.log(ataqueJugador[i])
+        if(ataqueJugador[i] === attackEnemy[i]) {
+            console.log('Empate')
+        }
+        
+    }
+
     if (attackPlayer == attackEnemy) {
         playerWinner = 'EMPANTE'
     } else if (attackPlayer =='Fire' && attackEnemy =='Ground') {
