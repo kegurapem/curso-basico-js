@@ -21,6 +21,9 @@ const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
+
 let mokepones = []
 let attackPlayer = []
 let attackEnemy = []
@@ -56,12 +59,25 @@ let victoriasEnemigo = 0
 let vidaPlayer = 3
 let vidaEnemigo = 3 
 
+let lienzo = mapa.getContext("2d")
+let intervalo
+let mapaBackground = new Image()
+mapaBackground.src = './assets/mokemap.png'
+
 class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -123,6 +139,9 @@ function startPlay() {
     selectAttack.style.display = 'none'
     selectRestart.style.display = 'none'
     selectContinue.style.display = 'none'
+
+    sectionVerMapa.style.display = 'none'
+
     buttonPetPlayer.addEventListener('click', selectPetPlayer)
     // buttonFire.addEventListener('click', attackFire)
     // buttonWater.addEventListener('click', attackWater)
@@ -205,9 +224,12 @@ function selectPetPlayer() {
     sectionImg.appendChild(img)
     //INSERTAR IMAGEN ENEMIGO
     //MUESTRA INTERFAZ-2
-    selectContinue.style.display = 'block'
+    // selectContinue.style.display = 'block'
     //ESCONDE INTERFAZ-1
     selectMokepon.style.display = 'none'
+    sectionVerMapa.style.display = 'flex'
+    iniciarMapa()
+    
 }
 
 function extraerAtaques(mascotaJugador) {
@@ -362,6 +384,76 @@ function restartGame() {
 function numberRandom(min, max) {
     random = Math.floor(Math.random() * (max - min + 1) + min);
     return random;
+}
+
+function pintarCanvas() {
+    capipepo.x = capipepo.x + capipepo.velocidadX
+    capipepo.y = capipepo.y + capipepo.velocidadY
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height
+    )
+    lienzo.drawImage(
+        capipepo.mapaFoto,
+        capipepo.x,
+        capipepo.y,
+        capipepo.ancho,
+        capipepo.alto
+    )
+}
+
+function moverDerecha() {
+    capipepo.velocidadX = 4
+}
+
+function moverIzquierda() {
+    capipepo.velocidadX = -4
+}
+
+function moverAbajo() {
+    capipepo.velocidadY = 4
+}
+
+function moverArriba() {
+    capipepo.velocidadY = -4
+}
+
+function detenerMovimiento() {
+    capipepo.velocidadX = 0
+    capipepo.velocidadY = 0
+}
+
+function sePresionoUnaTecla(event) {
+    console.log(event.key)
+    switch (event.key) {
+        case 'ArrowUp':
+            moverArriba()
+            break;
+        case 'ArrowDown':
+            moverAbajo()
+            break;
+        case 'ArrowLeft':
+            moverIzquierda()
+            break;
+        case 'ArrowRight':
+            moverDerecha()
+            break;
+        default:
+            break;
+    }
+}
+
+function iniciarMapa() {
+    mapa.width = 800
+    mapa.height= 600
+    intervalo = setInterval(pintarCanvas, 80)
+
+    window.addEventListener('keydown', sePresionoUnaTecla)
+    window.addEventListener('keyup', detenerMovimiento)
 }
 
 window.addEventListener('load', startPlay)

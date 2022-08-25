@@ -15,41 +15,6 @@
             <h2 class="subtittle">Choose your pet :</h2>
 
             <div id="contenedorTarjetas" class="tarjetas">
-                <!-- <input type="radio" name="pet" id="hipodoge">
-                <label class="tarjeta-mokepon" for="hipodoge">
-                    <p>Hipodoge</p>
-                    <img src="./assets/1.png" alt=""> 
-                </label>
-                
-                <input type="radio" name="pet" id="capipepo">
-                <label class="tarjeta-mokepon" for="capipepo">
-                    <p>Capipepo</p>
-                    <img src="./assets/2.png" alt="">
-                </label>
-                
-                <input type="radio" name="pet" id="ratigueya">
-                <label class="tarjeta-mokepon" for="ratigueya">
-                    <p>Ratigueya</p>
-                    <img src="./assets/3.png" alt="">
-                </label>
-                
-                <input type="radio" name="pet" id="langostelvis">
-                <label class="tarjeta-mokepon" for="langostelvis">
-                    <p>Langostelvis</p>
-                    <img src="./assets/4.png" alt="">
-                </label>
-                
-                <input type="radio" name="pet" id="tucapalma">
-                <label class="tarjeta-mokepon" for="tucapalma">
-                    <p>Tucapalma</p>
-                    <img src="./assets/5.png" alt="">
-                </label>
-                
-                <input type="radio" name="pet" id="pydos">
-                <label class="tarjeta-mokepon" for="pydos">
-                    <p>Pydos</p>
-                    <img src="./assets/6.png" alt="">
-                </label> -->
             </div>
 
             <button id="button-pet">Select</button>
@@ -68,6 +33,16 @@
             </div>
             <button id="button-continue-battle">Let's Go</button>
         </section>
+        
+        <section id="ver-mapa">
+            <h1 class="tittle">Recorre el mapa con tu mokepon 🔥💦🌱</h1>
+            <canvas id="mapa"></canvas>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+        </section>
+
         <section class="attack" id="select-attack">
             <div class="atacar">
                 <h2 class="attack-subtittle">Choose your attack</h2>
