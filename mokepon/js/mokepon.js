@@ -64,17 +64,28 @@ let lienzo = mapa.getContext("2d")
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './assets/mokemap.png'
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 40
+const anchoMaximoDelMapa = 850
+
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 400/600
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
 
 class Mokepon {
-    constructor(nombre, foto, vida, fotoMapa, x=10, y=10) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 80
         this.alto = 80
+        this.x = numberRandom(0, mapa.width - this.ancho)
+        this.y = numberRandom(0, mapa.height - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -95,16 +106,16 @@ class Mokepon {
 let  hipodoge = new Mokepon('Hipodoge', './assets/1.png', 5, './assets/hipodoge.png')
 let  capipepo = new Mokepon('Capipepo', './assets/2.png', 5, './assets/capipepo.png')
 let  ratigueya = new Mokepon('Ratigueya', './assets/3.png', 5, './assets/ratigueya.png')
-let  langostelvis = new Mokepon('Langostelvis', './assets/4.png', 5, './assets/langostelvis.png')
-let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 5, './assets/tucapalma.png')
-let  pydos = new Mokepon('Pydos', './assets/6.png', 5, './assets/pydos.png')
+// let  langostelvis = new Mokepon('Langostelvis', './assets/4.png', 5, './assets/langostelvis.png')
+// let  tucapalma = new Mokepon('Tucapalma', './assets/5.png', 5, './assets/tucapalma.png')
+// let  pydos = new Mokepon('Pydos', './assets/6.png', 5, './assets/pydos.png')
 
-let  hipodogeEnemigo = new Mokepon('Hipodoge', './assets/1.png', 5, './assets/hipodoge.png', 200, 420)
-let  capipepoEnemigo = new Mokepon('Capipepo', './assets/2.png', 5, './assets/capipepo.png', 700, 200)
-let  ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/3.png', 5, './assets/ratigueya.png', 500, 100)
-let  langostelvisEnemigo = new Mokepon('Langostelvis', './assets/4.png', 5, './assets/langostelvis.png', 520, 280)
-let  tucapalmaEnemigo = new Mokepon('Tucapalma', './assets/5.png', 5, './assets/tucapalma.png', 200, 270)
-let  pydosEnemigo = new Mokepon('Pydos', './assets/6.png', 5, './assets/pydos.png', 380, 250)
+let  hipodogeEnemigo = new Mokepon('Hipodoge', './assets/1.png', 5, './assets/hipodoge.png')
+let  capipepoEnemigo = new Mokepon('Capipepo', './assets/2.png', 5, './assets/capipepo.png')
+let  ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/3.png', 5, './assets/ratigueya.png')
+// let  langostelvisEnemigo = new Mokepon('Langostelvis', './assets/4.png', 5, './assets/langostelvis.png', 520, 280)
+// let  tucapalmaEnemigo = new Mokepon('Tucapalma', './assets/5.png', 5, './assets/tucapalma.png', 200, 270)
+// let  pydosEnemigo = new Mokepon('Pydos', './assets/6.png', 5, './assets/pydos.png', 380, 250)
 
 
 hipodoge.ataques.push(
@@ -114,6 +125,15 @@ hipodoge.ataques.push(
     {nombre: '🔥', id:'button-fire'},
     {nombre: '🌱', id:'button-ground'}
 )
+
+hipodogeEnemigo.ataques.push(
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🌱', id:'button-ground'}
+)
+
 capipepo.ataques.push(
     {nombre: '🔥', id:'button-fire'},
     {nombre: '🔥', id:'button-fire'},
@@ -121,6 +141,15 @@ capipepo.ataques.push(
     {nombre: '💦', id:'button-water'},
     {nombre: '🌱', id:'button-ground'}
 )
+
+capipepoEnemigo.ataques.push(
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '🔥', id:'button-fire'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🌱', id:'button-ground'}
+)
+
 ratigueya.ataques.push(
     {nombre: '🌱', id:'button-ground'},
     {nombre: '🌱', id:'button-ground'},
@@ -128,29 +157,38 @@ ratigueya.ataques.push(
     {nombre: '💦', id:'button-water'},
     {nombre: '🔥', id:'button-fire'},
 )
-langostelvis.ataques.push(
-    {nombre: '💦', id:'button-water'},
-    {nombre: '💦', id:'button-water'},
-    {nombre: '💦', id:'button-water'},
-    {nombre: '🔥', id:'button-fire'},
-    {nombre: '🌱', id:'button-ground'}
-)
-tucapalma.ataques.push(
-    {nombre: '🔥', id:'button-fire'},
-    {nombre: '🔥', id:'button-fire'},
-    {nombre: '🔥', id:'button-fire'},
-    {nombre: '💦', id:'button-water'},
-    {nombre: '🌱', id:'button-ground'}
-)
-pydos.ataques.push(
-    {nombre: '🌱', id:'button-ground'},
-    {nombre: '🌱', id:'button-ground'},
-    {nombre: '🌱', id:'button-ground'},
-    {nombre: '💦', id:'button-water'},
-    {nombre: '🔥', id:'button-fire'},
-)
 
-mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
+ratigueyaEnemigo.ataques.push(
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '🌱', id:'button-ground'},
+    {nombre: '💦', id:'button-water'},
+    {nombre: '🔥', id:'button-fire'},
+)
+// langostelvis.ataques.push(
+//     {nombre: '💦', id:'button-water'},
+//     {nombre: '💦', id:'button-water'},
+//     {nombre: '💦', id:'button-water'},
+//     {nombre: '🔥', id:'button-fire'},
+//     {nombre: '🌱', id:'button-ground'}
+// )
+// tucapalma.ataques.push(
+//     {nombre: '🔥', id:'button-fire'},
+//     {nombre: '🔥', id:'button-fire'},
+//     {nombre: '🔥', id:'button-fire'},
+//     {nombre: '💦', id:'button-water'},
+//     {nombre: '🌱', id:'button-ground'}
+// )
+// pydos.ataques.push(
+//     {nombre: '🌱', id:'button-ground'},
+//     {nombre: '🌱', id:'button-ground'},
+//     {nombre: '🌱', id:'button-ground'},
+//     {nombre: '💦', id:'button-water'},
+//     {nombre: '🔥', id:'button-fire'},
+// )
+
+// mokepones.push(hipodoge, capipepo, ratigueya, langostelvis, tucapalma, pydos)
+mokepones.push(hipodoge, capipepo, ratigueya)
 
 function startPlay() {
     
@@ -180,9 +218,9 @@ function startPlay() {
         hipodogeInpunt = document.getElementById('Hipodoge')
         capipepoInpun = document.getElementById('Capipepo')
         ratigueyaInpunt = document.getElementById('Ratigueya')
-        langostelvisInpunt = document.getElementById('Langostelvis')
-        tucapalmaInpunt = document.getElementById('Tucapalma')
-        pydosInpunt = document.getElementById('Pydos')
+        // langostelvisInpunt = document.getElementById('Langostelvis')
+        // tucapalmaInpunt = document.getElementById('Tucapalma')
+        // pydosInpunt = document.getElementById('Pydos')
     }) 
 }
 
@@ -211,24 +249,24 @@ function selectPetPlayer() {
         rutaImg = ratigueya.foto
 
         mascotaJugador = ratigueyaInpunt.id
-    } else if (langostelvisInpunt.checked === true) {
-        spanPetPlayer.innerHTML = langostelvisInpunt.id
-        playerChose.innerHTML = langostelvisInpunt.id
-        rutaImg = langostelvis.foto
+    // } else if (langostelvisInpunt.checked === true) {
+    //     spanPetPlayer.innerHTML = langostelvisInpunt.id
+    //     playerChose.innerHTML = langostelvisInpunt.id
+    //     rutaImg = langostelvis.foto
 
-        mascotaJugador = langostelvisInpunt.id
-    } else if (tucapalmaInpunt.checked === true) {
-        spanPetPlayer.innerHTML = tucapalmaInpunt.id
-        playerChose.innerHTML = tucapalmaInpunt.id
-        rutaImg = tucapalma.foto
+    //     mascotaJugador = langostelvisInpunt.id
+    // } else if (tucapalmaInpunt.checked === true) {
+    //     spanPetPlayer.innerHTML = tucapalmaInpunt.id
+    //     playerChose.innerHTML = tucapalmaInpunt.id
+    //     rutaImg = tucapalma.foto
 
-        mascotaJugador = tucapalmaInpunt.id
-    } else if (pydosInpunt.checked === true) {
-        spanPetPlayer.innerHTML = pydosInpunt.id
-        playerChose.innerHTML = pydosInpunt.id
-        rutaImg = pydos.foto
+    //     mascotaJugador = tucapalmaInpunt.id
+    // } else if (pydosInpunt.checked === true) {
+    //     spanPetPlayer.innerHTML = pydosInpunt.id
+    //     playerChose.innerHTML = pydosInpunt.id
+    //     rutaImg = pydos.foto
 
-        mascotaJugador = pydosInpunt.id
+    //     mascotaJugador = pydosInpunt.id
     } else {
         alert('Escoge p mascota')
     }
@@ -476,8 +514,8 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 800
-    mapa.height= 600
+    // mapa.width = 800
+    // mapa.height= 600
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 80)
 
@@ -506,15 +544,18 @@ function revisarColision(enemigo){
 
      if(
         abajoMascota < arribaEnemigo ||
-        arribaMascota < abajoEnemigo ||
+        arribaMascota > abajoEnemigo ||
         derechaMascota < izquierdaEnemigo ||
-        izquierdaMascota < derechaEnemigo
+        izquierdaMascota > derechaEnemigo
      ) {
         return
      }
 
      detenerMovimiento()
-     alert('Hay Colision' + enemigo.nombre)
+     console.log('Se detecto colision')
+     selectAttack.style.display = 'block'
+     sectionVerMapa.style.display = 'none'
+    //  alert('Hay Colision' + enemigo.nombre)
 }
 
 window.addEventListener('load', startPlay)
