@@ -86,6 +86,17 @@ body {
     margin-bottom: 40px;
 }
 
+#ver-mapa button {
+    border-radius: 12px;
+    font-size: 24px;
+    padding: 8px 64px 8px 64px;
+    border: #ffffff 1px solid;
+    color: white;
+    background-color:#46859e;
+    font-weight: bold;
+    /* margin-bottom: 8px; */
+    margin: 8px;
+}
 input:checked + label {
     background-color: aqua;
 }
